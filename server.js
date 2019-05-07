@@ -75,7 +75,7 @@ app.get('/hello', getHello);
 //------------------------------------------
 // Error handling
 //------------------------------------------
-app.get('*', (request, response) => response.status(404).send('This route does not exist'));
+app.get('*', (req, res) => res.render('pages/error', {errorMessage: 'Error: Route does not exist!'}));
 
 let errorMessage = () => {
   let errorObj = {
