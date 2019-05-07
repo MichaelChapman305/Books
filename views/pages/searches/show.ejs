@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Show books</title>
+    <link rel="stylesheet" type="text/css" href="/reset.css" />
+    <link rel="stylesheet" type="text/css" href="/styles/base.css" />
+  </head>
+  <body>
+    <% searchResults.forEach(item => { %>
+    <li><%= item.title %></li>
+    <% }); %>
+  </body>
+</html>
