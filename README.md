@@ -32,12 +32,42 @@ Finish time: 9:00
 
 Actual time needed to complete: 40 minutes
 
-Number and name of feature: 
+Number and name of feature: Google books API
 
-Estimate of time needed to complete: 
+Estimate of time needed to complete: 1hr
 
-Start time: 
+Start time: 8:30
 
-Finish time: 
+Finish time: 9:00
 
-Actual time needed to complete: 
+Actual time needed to complete: 30 minutes 
+
+Number and name of feature: View search results
+
+Estimate of time needed to complete: 2 hours
+
+Start time: 9:00
+
+Finish time: 10:30
+
+Actual time needed to complete: 1.5 hours
+
+Number and name of feature: Error handling
+
+Estimate of time needed to complete: 30 minutes
+
+Start time: 10:30
+
+Finish time: 11:15
+
+Actual time needed to complete: 45 minutes
+
+Number and name of feature: styling
+
+Estimate of time needed to complete: 45 minutes
+
+Start time: 11:15
+
+Finish time: 11:50
+
+Actual time needed to complete: 40 minutes
