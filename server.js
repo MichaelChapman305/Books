@@ -11,16 +11,21 @@ app.use(express.static('public'));
 
 app.set('view engine', 'ejs');
 
-let newSearch = (req, res) => {
+let renderHome = (req, res) => {
   res.render('pages/index');
+};
+
+let getSearch = (req, res) => {
+  console.log(req.body);
 };
 
 let getHello = (req, res) => {
   res.render('pages/index');
 };
 
-app.get('/', newSearch);
+app.get('/', renderHome);
 app.get('/hello', getHello);
+app.post('/searches', getSearch);
 
 app.get('*', (request, response) => response.status(404).send('This route does not exist'));
 

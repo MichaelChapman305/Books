@@ -22,12 +22,22 @@ This app is for lookup up books using the google books API and storing books in 
 <!-- Give credit (and a link) to other people or resources that helped you build this application. -->
 -->
 
-Number and name of feature: ________________________________
+Number and name of feature: Setup server.js and render index.ejs
 
-Estimate of time needed to complete: _____
+Estimate of time needed to complete: 1hour
 
-Start time: _____
+Start time: 8:20
 
-Finish time: _____
+Finish time: 9:00
 
-Actual time needed to complete: _____
+Actual time needed to complete: 40 minutes
+
+Number and name of feature: 
+
+Estimate of time needed to complete: 
+
+Start time: 
+
+Finish time: 
+
+Actual time needed to complete: 
