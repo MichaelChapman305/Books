@@ -6,23 +6,26 @@
     <link rel="stylesheet" type="text/css" href="/styles/base.css" />
   </head>
   <body>
-    <main>
-      <h4>Search by Title or Author</h4>
+    <header>
+      <h1>Best Books!</h1>
+    </header>
+    <main id="form">
+      <hgroup><h4>Search by Title or Author</h4></hgroup>
       <form action="/searches" method="post">
-        <input type="text" name="search" placeholder="Select either title or author" required>
-        <fieldset>
+        <input  class="input" id="search" type="text" name="search" placeholder="Select either title or author" required>
+        <fieldset  class="input" id="title">
           <label for="title">
             <span>Title</span>
             <input type="radio" name="search" value="title" required>
           </label>
         </fieldset>
-        <fieldset>
-          <label for="author">
+        <fieldset  class="input" id="author">
+          <label  for="author">
             <span>Author</span>
-            <input type="radio" name="search" value="author" required>
+            <input  type="radio" name="search" value="author" required>
           </label>
         </fieldset>
-        <button type="submit">Search the Google Books API</button>
+        <button id="submit" class="input" type="submit">Search the Google Books API</button>
       </form>
     </main>
   </body>
