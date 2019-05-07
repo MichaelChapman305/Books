@@ -39,7 +39,8 @@ let urlCheck = (link) => {
 // Route Handlers
 //------------------------------------------
 let renderHome = (req, res) => {
-  res.render('pages/index');
+  res.render('pages/index')
+    .catch(() => errorMessage());
 };
 
 let getSearch = (req, res) => {
@@ -55,11 +56,13 @@ let getSearch = (req, res) => {
       }
 
       res.render('pages/searches/show', {searchResults: booksArr});
-    });
+    })
+    .catch(() => errorMessage());
 };
 
 let getHello = (req, res) => {
-  res.render('pages/index');
+  res.render('pages/index')
+    .catch(() => errorMessage());
 };
 
 //------------------------------------------
@@ -73,6 +76,14 @@ app.get('/hello', getHello);
 // Error handling
 //------------------------------------------
 app.get('*', (request, response) => response.status(404).send('This route does not exist'));
+
+let errorMessage = () => {
+  let errorObj = {
+    status: 500,
+    responseText: 'Sorry something went wrong',
+  };
+  return errorObj;
+};
 
 //------------------------------------------
 // Run server
