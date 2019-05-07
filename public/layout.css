@@ -1,0 +1,58 @@
+@import url('../modules.css');
+
+#form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: darkgrey;
+  width: 100%;
+}
+
+hgroup {
+  width: 100%;
+  background-color: gray;
+  height: 150px;
+  color: white;
+}
+
+hgroup h4 {
+  font-size: 30px;
+}
+body {
+  background-color: darkgrey;
+}
+
+header {
+  background-color: black;
+  color: white;
+  height: 200px;
+}
+
+h1 {
+  font-size: 50px;
+}
+
+#search {
+
+}
+
+#author {
+
+  background-color: white;
+}
+
+#title {
+  background-color: white;
+}
+
+#submit {
+ 
+  background-color: black;
+  color: white;
+}
+
+.input {
+  margin-top: 30px;
+  width: 75%;
+  height: 75px;
+}
