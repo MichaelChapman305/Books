@@ -8,13 +8,6 @@
   <body>
     <p><a href="/search">Search</a></p>
     <p>Total number of books: <%= booksAmount %></p>
-    <% savedBooks.forEach(book => { %>
-      <section id="searched_book">
-        <img src=<%= book.image %> />
-        <h2><%= book.title %></h2>
-        <h4><%= book.author %></h4>
-        <button><a href="">View Details</a></button>
-      </section>
-    <% }); %>
+    <%- include('./books/detail') %>
   </body>
 </html>

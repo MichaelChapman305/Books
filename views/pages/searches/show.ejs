@@ -7,14 +7,8 @@
   </head>
   <body>
     <main>
-      <% searchResults.forEach(item => { %>
-        <section id="searched_book">
-          <img src=<%= item.image %> />
-          <h2><%= item.title %></h2>
-          <h4><%= item.author %></h4>
-          <button><a href="">Select this book</a></button>
-        </section>
-      <% }); %>
+        <%- include('../books/detail') %>
+      </body>
     </main>
   </body>
 </html>

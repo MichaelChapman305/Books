@@ -57,13 +57,27 @@ let renderHome = (req, res) => {
 
   return client.query(SQL)
     .then(results => {
-      res.render('pages/index', {savedBooks: results.rows, booksAmount: results.rows.length});
+      res.render('pages/index', {books: results.rows, booksAmount: results.rows.length});
     })
     .catch(() => errorMessage());
 };
 
 let renderForm = (req, res) => {
   res.render('pages/searches/new');
+};
+
+let renderBook = (req, res) => {
+  let id = req.params.id.slice(1);
+
+  let SQL = `SELECT * FROM books WHERE id=${id};`;
+
+
+  return client.query(SQL)
+    .then(results => {
+      console.log(results);
+      res.render('pages/books/show', {books: results.rows});
+    })
+    .catch(() => errorMessage());
 };
 
 let getSearch = (req, res) => {
@@ -82,7 +96,7 @@ let getSearch = (req, res) => {
       for (let i = 0; i < 10; i++) {
         booksArr.push(books[i]);
       }
-      res.render('pages/searches/show', {searchResults: booksArr});
+      res.render('pages/searches/show', {books: booksArr});
     })
     .catch(() => errorMessage());
 };
@@ -109,6 +123,7 @@ Books.prototype.save = function() {
 //------------------------------------------
 app.get('/', renderHome);
 app.get('/search', renderForm);
+app.get('/books:id', renderBook);
 app.post('/searches/new', getSearch);
 app.get('/hello', getHello);
 
