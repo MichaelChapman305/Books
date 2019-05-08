@@ -57,7 +57,7 @@ let renderHome = (req, res) => {
 
   return client.query(SQL)
     .then(results => {
-      res.render('pages/index', {savedBooks: results.rows, booksAmount: results.rows.length});
+      res.render('pages/index', {books: results.rows, booksAmount: results.rows.length});
     })
     .catch(() => errorMessage());
 };
@@ -75,7 +75,7 @@ let renderBook = (req, res) => {
   return client.query(SQL)
     .then(results => {
       console.log(results);
-      res.render('pages/books/show', {book: results.rows[0]});
+      res.render('pages/books/show', {books: results.rows});
     })
     .catch(() => errorMessage());
 };
@@ -96,7 +96,7 @@ let getSearch = (req, res) => {
       for (let i = 0; i < 10; i++) {
         booksArr.push(books[i]);
       }
-      res.render('pages/searches/show', {searchResults: booksArr});
+      res.render('pages/searches/show', {books: booksArr});
     })
     .catch(() => errorMessage());
 };
