@@ -66,6 +66,20 @@ let renderForm = (req, res) => {
   res.render('pages/searches/new');
 };
 
+let renderBook = (req, res) => {
+  let id = req.params.id.slice(1);
+
+  let SQL = `SELECT * FROM books WHERE id=${id};`;
+
+
+  return client.query(SQL)
+    .then(results => {
+      console.log(results);
+      res.render('pages/books/show', {book: results.rows[0]});
+    })
+    .catch(() => errorMessage());
+};
+
 let getSearch = (req, res) => {
   let url = `https://www.googleapis.com/books/v1/volumes?q=+in${req.body.search[1]}:${req.body.search[0]}`;
 
@@ -109,6 +123,7 @@ Books.prototype.save = function() {
 //------------------------------------------
 app.get('/', renderHome);
 app.get('/search', renderForm);
+app.get('/books:id', renderBook);
 app.post('/searches/new', getSearch);
 app.get('/hello', getHello);
 
