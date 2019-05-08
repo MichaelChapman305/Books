@@ -56,3 +56,15 @@ h1 {
   width: 75%;
   height: 75px;
 }
+
+#searched_book {
+  background-color: rgb(70, 68, 68);
+  width: 200px;
+  height: 300px;
+  margin-top: 10px;
+}
+
+#searched_book img {
+  width: 100px;
+  height: 150px;
+}

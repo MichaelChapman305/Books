@@ -6,8 +6,15 @@
     <link rel="stylesheet" type="text/css" href="/styles/base.css" />
   </head>
   <body>
-    <% searchResults.forEach(item => { %>
-    <li><%= item.title %></li>
-    <% }); %>
+    <main>
+      <% searchResults.forEach(item => { %>
+        <section id="searched_book">
+          <img src=<%= item.image %> />
+          <h2><%= item.title %></h2>
+          <h4><%= item.author %></h4>
+          <button><a href="">Select this book</a></button>
+        </section>
+      <% }); %>
+    </main>
   </body>
 </html>

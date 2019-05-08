@@ -5,6 +5,8 @@
 //------------------------------------------
 const express = require('express');
 const superagent = require('superagent');
+require('dotenv').config();
+const pg = require('pg');
 
 //------------------------------------------
 // Server
@@ -15,17 +17,29 @@ const PORT = process.env.PORT || 3000;
 app.use(express.urlencoded({extended:true}));
 app.use(express.static('public'));
 
+//------------------------------------------
+// Database
+//------------------------------------------
+const client = new pg.Client(process.env.DATABASE_URL);
+client.connect();
+client.on('error', err => console.error(err));
+
+//------------------------------------------
+// Templating
+//------------------------------------------
 app.set('view engine', 'ejs');
 
 //------------------------------------------
 // Constructor
 //------------------------------------------
 function Books(data) {
-  let image = data.imageLinks ? urlCheck(data.imageLinks.thumbnail) : 'https://www.flickr.com/photos/susankeys/4231850506/in/photolist-7rXkHL-rj3Hsq-dWQtuv-7VGQL8-cnAc2N-LM2sE-aqFr5Y-5LCZ34-ayeSbi-8xS4cq-7W5pGF-eY9RPd-9erFQF-9uLoad-84dEBR-9AuVM-fJH2Zs-aAeQ3F-4eLSR9-cZUmwb-9VzZv4-971rUp-4uyjvP-6C6RMd-b2xdpe-iGbFjw-r5f5pK-MeUau9-9exFsv-51Whem-hfCbvb-nhecpm-4ZRUcT-nG555a-bk2tkB-cuUJXQ-dsbMZo-jXJp-3drmaF-mH1bMi-ACUYf-5gLPAY-3dvH7J-ocpoWm-9YckAw-7dj9ir-7L5moo-gLhwM9-abyiEQ-dnyBsr';
+  let image = data.imageLinks ? urlCheck(data.imageLinks.thumbnail) : 'https://i.imgur.com/J5LVHEL.jpg';
   this.title = data.title || 'No title available';
-  this.authors = data.authors ? data.authors[0] : 'No author available';
+  this.author = data.authors ? data.authors[0] : 'No author available';
+  this.isbn = data.industryIdentifiers[0].identifier || 'ISBN Not available';
   this.description = data.description || 'No description available';
   this.image = image;
+  this.bookshelf = 'Fantasy';
 }
 
 //------------------------------------------
@@ -39,22 +53,35 @@ let urlCheck = (link) => {
 // Route Handlers
 //------------------------------------------
 let renderHome = (req, res) => {
-  res.render('pages/index')
+  let SQL = `SELECT * FROM books;`;
+
+  return client.query(SQL)
+    .then(results => {
+      res.render('pages/index', {savedBooks: results.rows, booksAmount: results.rows.length});
+    })
     .catch(() => errorMessage());
+};
+
+let renderForm = (req, res) => {
+  res.render('pages/searches/new');
 };
 
 let getSearch = (req, res) => {
   let url = `https://www.googleapis.com/books/v1/volumes?q=+in${req.body.search[1]}:${req.body.search[0]}`;
 
   superagent.get(url)
-    .then(result => result.body.items.map(book => new Books(book.volumeInfo)))
+    .then(result => {
+      return result.body.items.map(book => {
+        let newBook = new Books(book.volumeInfo);
+        return newBook;
+      });
+    })
     .then(books => {
       let booksArr = [];
 
       for (let i = 0; i < 10; i++) {
         booksArr.push(books[i]);
       }
-
       res.render('pages/searches/show', {searchResults: booksArr});
     })
     .catch(() => errorMessage());
@@ -66,10 +93,23 @@ let getHello = (req, res) => {
 };
 
 //------------------------------------------
+// Save to database
+//------------------------------------------
+Books.prototype.save = function() {
+  let SQL = `INSERT INTO books 
+    (title, author, isbn, description, image, bookshelf)
+    VALUES ($1, $2, $3, $4, $5, $6);`;
+
+  let values = Object.values(this);
+  return client.query(SQL, values);
+};
+
+//------------------------------------------
 // Routes
 //------------------------------------------
 app.get('/', renderHome);
-app.post('/searches', getSearch);
+app.get('/search', renderForm);
+app.post('/searches/new', getSearch);
 app.get('/hello', getHello);
 
 //------------------------------------------

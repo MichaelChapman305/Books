@@ -6,27 +6,15 @@
     <link rel="stylesheet" type="text/css" href="/styles/base.css" />
   </head>
   <body>
-    <header>
-      <h1>Best Books!</h1>
-    </header>
-    <main id="form">
-      <hgroup><h4>Search by Title or Author</h4></hgroup>
-      <form action="/searches" method="post">
-        <input  class="input" id="search" type="text" name="search" placeholder="Select either title or author" required>
-        <fieldset  class="input" id="title">
-          <label for="title">
-            <span>Title</span>
-            <input type="radio" name="search" value="title" required>
-          </label>
-        </fieldset>
-        <fieldset  class="input" id="author">
-          <label  for="author">
-            <span>Author</span>
-            <input  type="radio" name="search" value="author" required>
-          </label>
-        </fieldset>
-        <button id="submit" class="input" type="submit">Search the Google Books API</button>
-      </form>
-    </main>
+    <p><a href="/search">Search</a></p>
+    <p>Total number of books: <%= booksAmount %></p>
+    <% savedBooks.forEach(book => { %>
+      <section id="searched_book">
+        <img src=<%= book.image %> />
+        <h2><%= book.title %></h2>
+        <h4><%= book.author %></h4>
+        <button><a href="">View Details</a></button>
+      </section>
+    <% }); %>
   </body>
 </html>
