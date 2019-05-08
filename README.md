@@ -71,3 +71,14 @@ Start time: 11:15
 Finish time: 11:50
 
 Actual time needed to complete: 40 minutes
+
+
+Number and name of feature: Set up database and render stored items in index.ejs and searched book in show.ejs
+
+Estimate of time needed to complete: 2 hours
+
+Start time: 8:00
+
+Finish time: 10:40
+
+Actual time needed to complete: 2 hours 40 minutes
