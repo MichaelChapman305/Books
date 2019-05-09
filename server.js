@@ -33,12 +33,18 @@ app.set('view engine', 'ejs');
 // Constructor
 //------------------------------------------
 function Books(data) {
+  let author = 'No author available';
+  if (data.authors) {
+    author = data.authors[0];
+  } else if (data.author) {
+    author = data.author;
+  }
   let image = data.imageLinks ? urlCheck(data.imageLinks.thumbnail) : 'https://i.imgur.com/J5LVHEL.jpg';
   this.title = data.title || 'No title available';
-  this.author = data.authors ? data.authors[0] : 'No author available';
-  this.isbn = data.industryIdentifiers[0].identifier || 'ISBN Not available';
+  this.author = author;
+  this.isbn = data.isbn || data.industryIdentifiers[0].identifier || 'ISBN Not available';
   this.description = data.description || 'No description available';
-  this.image = image;
+  this.image = data.image || image;
   this.bookshelf = 'Fantasy';
 }
 
@@ -67,9 +73,10 @@ let renderForm = (req, res) => {
 };
 
 let renderBook = (req, res) => {
-  let id = req.params.id.slice(1);
+  console.log('render book');
+  // let id = req.params.id.slice(1);
 
-  let SQL = `SELECT * FROM books WHERE id=${id};`;
+  let SQL = `SELECT * FROM books WHERE id=${req.params.id};`;
 
 
   return client.query(SQL)
@@ -106,6 +113,14 @@ let getHello = (req, res) => {
     .catch(() => errorMessage());
 };
 
+let saveBook = (req, res) => {
+  let newBook = new Books(req.body);
+  newBook.save()
+    .then(book => {
+      console.log(book);
+    });
+};
+
 //------------------------------------------
 // Save to database
 //------------------------------------------
@@ -123,8 +138,9 @@ Books.prototype.save = function() {
 //------------------------------------------
 app.get('/', renderHome);
 app.get('/search', renderForm);
-app.get('/books:id', renderBook);
+app.get('/books/:id', renderBook);
 app.post('/searches/new', getSearch);
+app.post('/books', saveBook);
 app.get('/hello', getHello);
 
 //------------------------------------------

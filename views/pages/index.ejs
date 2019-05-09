@@ -8,6 +8,6 @@
   <body>
     <p><a href="/search">Search</a></p>
     <p>Total number of books: <%= booksAmount %></p>
-    <%- include('./books/detail', {books: savedBooks, button: ['/details', 'View details']}) %>
+    <%- include('./books/detail', {books: savedBooks, button: ['View details'], href:"/books/"}) %>
   </body>
 </html>
