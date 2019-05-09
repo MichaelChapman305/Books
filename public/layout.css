@@ -57,14 +57,18 @@ h1 {
   height: 75px;
 }
 
-#searched_book {
+.book-view {
   background-color: rgb(70, 68, 68);
   width: 200px;
   height: 300px;
   margin-top: 10px;
 }
 
-#searched_book img {
+.book-view img {
   width: 100px;
   height: 150px;
+}
+
+.hide-me {
+  display: none;
 }
