@@ -1,12 +1,12 @@
 <% books.forEach(book => { %>
-  <section id="searched_book_<%=book.id%>" class="book-view">
+  <section id="searched_book>" class="book-view">
       <img src=<%= book.image %> />
       <h2><%= book.title %></h2>
       <h4><%= book.author %></h4>
       <!-- <p><%= book.description %></p> -->
       <!-- <p><%= book.isbn %></p> -->
       <p><%= book.bookshelf %></p>
-      <button id="select"><%= button[0] %></button>
-      <%- include('../books/edit') %>
+      <button><%= button[0] %></button>
+      <%- include('../books/edit', { data: [book.title, book.author, book.description, book.isbn, book.image] }) %>
   </section>
 <% }); %>

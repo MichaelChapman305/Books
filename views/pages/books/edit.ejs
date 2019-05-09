@@ -1,8 +1,8 @@
-<form class="book-form-view hide-me" action="" method="">
-  <input type="text" name="title" value="" placeholder="book title">
-  <input type="text" name="author" value="" placeholder="author name">
-  <input type="text" name="isbn" value="" placeholder="isbn">
-  <input type="text" name="description" value="" placeholder="description">
-  <input type="text" name="image" value="" placeholder="image url">
-  <input type="text" name="bookshelf" value="" placeholder="bookshelf">
+<form class="book-form-view hide-me" action="/" method="">
+  <input type="text" name="title" value="<%= data[0] %>" placeholder="book title" required>
+  <input type="text" name="author" value="<%= data[1] %>" placeholder="author name" required>
+  <input type="text" name="isbn" value="<%= data[3] %>" placeholder="isbn" required>
+  <input type="text" name="description" value="<%= data[2] %>" placeholder="description" required>
+  <input type="text" name="image" value="<%= data[4] %>" placeholder="image url" required>
+  <input type="text" name="bookshelf" value="" placeholder="bookshelf" required>
 </form>
