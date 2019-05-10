@@ -73,10 +73,8 @@ let renderForm = (req, res) => {
 };
 
 let renderBook = (req, res) => {
-  console.log('render book');
-  // let id = req.params.id.slice(1);
-
-  let SQL = `SELECT * FROM books WHERE id=${req.params.id};`;
+  let id = req.params.id.slice(1);
+  let SQL = `SELECT * FROM books WHERE id=${id};`;
 
 
   return client.query(SQL)
@@ -115,9 +113,9 @@ let getHello = (req, res) => {
 
 let saveBook = (req, res) => {
   let newBook = new Books(req.body);
-  newBook.save()
+  return newBook.save()
     .then(book => {
-      console.log(book);
+      res.redirect(`/books/:${book.rows[0].id}`);
     });
 };
 
@@ -127,7 +125,8 @@ let saveBook = (req, res) => {
 Books.prototype.save = function() {
   let SQL = `INSERT INTO books 
     (title, author, isbn, description, image, bookshelf)
-    VALUES ($1, $2, $3, $4, $5, $6);`;
+    VALUES ($1, $2, $3, $4, $5, $6)
+    RETURNING id;`;
 
   let values = Object.values(this);
   return client.query(SQL, values);
