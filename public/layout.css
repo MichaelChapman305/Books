@@ -28,6 +28,13 @@ header {
   height: 200px;
 }
 
+footer {
+  margin-top: 20px;
+  background-color: black;
+  color: white;
+  height: 200px;
+}
+
 h1 {
   font-size: 50px;
 }
