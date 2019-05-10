@@ -82,3 +82,33 @@ Start time: 8:00
 Finish time: 10:40
 
 Actual time needed to complete: 2 hours 40 minutes
+
+Number and name of feature: Render form when click view details and add item to database and redirect to homepage
+
+Estimate of time needed to complete: 4 hours
+
+Start time: 8:00
+
+Finish time: 9:00 - next day
+
+Actual time needed to complete: 5 hours
+
+Number and name of feature: Normalize database
+
+Estimate of time needed to complete: 1 hour
+
+Start time: 9:00
+
+Finish time: 9:45
+
+Actual time needed to complete: 45 minutes
+
+Number and name of feature: Put head, header and footer into partials
+
+Estimate of time needed to complete: 1 hour
+
+Start time: 9:45
+
+Finish time: 10:15
+
+Actual time needed to complete: 30 minutes
