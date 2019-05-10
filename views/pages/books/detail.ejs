@@ -6,7 +6,7 @@
       <!-- <p><%= book.description %></p> -->
       <!-- <p><%= book.isbn %></p> -->
       <p><%= book.bookshelf %></p>
-      <button href="<%= href + book.id %>" class="viewDetails"><%= button[0] %></button>
+      <a href="<%= href + book.id %>"><button class="viewDetails"><%= button[0] %></button></a>
       <%- include('../books/edit', { data: [book.title, book.author, book.description, book.isbn, book.image] }) %>
   </section>
 <% }); %>
