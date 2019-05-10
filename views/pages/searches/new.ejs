@@ -1,14 +1,8 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Books</title>
-    <link rel="stylesheet" type="text/css" href="/reset.css" />
-    <link rel="stylesheet" type="text/css" href="/styles/base.css" />
-  </head>
+  <%- include('../../layout/head') %>
   <body>
-    <header>
-      <h1>Best Books!</h1>
-    </header>
+    <%- include('../../layout/header') %>
     <main id="form">
       <hgroup><h4>Search by Title or Author</h4></hgroup>
       <form action="/searches/new" method="post">
@@ -28,5 +22,6 @@
         <button id="submit" class="input" type="submit">Search the Google Books API</button>
       </form>
     </main>
+    <%- include('../../layout/footer') %>
   </body>
 </html>
